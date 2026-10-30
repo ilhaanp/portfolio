@@ -1,0 +1,274 @@
+/* ==========================================================================
+   CSS Variables & Design Tokens
+   ========================================================================== */
+:root {
+  /* Colors - Light Theme (default) */
+  --bg-color: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --timeline-line: #e5e7eb;
+  --timeline-dot: #111827;
+  --link-color: #111827;
+  --link-hover: #4b5563;
+  --focus-ring: #111827;
+  --toggle-hover-bg: #f3f4f6;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.375rem;
+  --font-size-h3: 1.05rem;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.25;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-container-max: 680px;
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --bg-color: #111318;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --timeline-line: #374151;
+  --timeline-dot: #f9fafb;
+  --link-color: #f9fafb;
+  --link-hover: #d1d5db;
+  --focus-ring: #f9fafb;
+  --toggle-hover-bg: #1f2937;
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Layout Container
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--space-container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: var(--space-8) var(--space-5);
+  }
+}
+
+/* ==========================================================================
+   Header & Theme Toggle
+   ========================================================================== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.header-intro h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.header-intro .tagline {
+  margin-top: var(--space-2);
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: var(--space-2);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--toggle-hover-bg);
+}
+
+/* Default (light theme): show moon, hide sun */
+.sun-icon {
+  display: none;
+}
+.moon-icon {
+  display: block;
+}
+
+/* Dark theme: show sun, hide moon */
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+
+/* ==========================================================================
+   Sections & Typography
+   ========================================================================== */
+.section {
+  margin-bottom: var(--space-7);
+}
+
+.section h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.section p {
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Focus styles for keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   Skills Section
+   ========================================================================== */
+.skills-list p {
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.skill-category {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Timeline (Projects / Experience - PDF Signature Feature)
+   ========================================================================== */
+.timeline {
+  position: relative;
+  margin-top: var(--space-4);
+  margin-left: var(--space-3);
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--timeline-line);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  /* Centers marker precisely on the 2px left border:
+     padding-left is 1.5rem (24px), border is 2px, marker is 12px wide.
+     -24px - 1px (half border) - 6px (half marker) = -31px */
+  left: -31px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--timeline-dot);
+  background-color: var(--bg-color);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.timeline-content .item-title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+}
+
+.timeline-content .item-description {
+  margin-top: var(--space-1);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--timeline-line);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+

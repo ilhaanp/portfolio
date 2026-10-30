@@ -3,12 +3,105 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My portfolio</title>
+  <title>Ilhaan Paurobally</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main>
-    <h1>Your portfolio starts here</h1>
-    <p>Fill in SPEC.md, then ask the agent to build your site.</p>
-  </main>
+  <div class="container">
+    <header class="site-header">
+      <div class="header-intro">
+        <h1>Ilhaan Paurobally</h1>
+        <p class="tagline">Computer Science Student at York University</p>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" type="button">
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>I am a computer science student at York University.</p>
+        <p>I enjoy building cool, fun and beneficial applications for the community and learning about new technologies. I am also interested in artificial intelligence and machine learning.</p>
+      </section>
+
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <p><span class="skill-category">Languages:</span> JavaScript, TypeScript, Python, Java</p>
+          <p><span class="skill-category">Frontend:</span> React</p>
+          <p><span class="skill-category">Tools &amp; Backend:</span> Git, Firebase</p>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <h3 class="item-title">
+                <a href="https://ai-car-buying-assistant.vercel.app/chat" target="_blank" rel="noopener noreferrer">AI Car Buying Assistant</a>
+              </h3>
+              <p class="item-description">Analyzes a given car dataset and gives you the best recommendations for a car based on your budget and needs.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <h3 class="item-title">
+                <a href="https://pantry-tracker-green-seven.vercel.app/" target="_blank" rel="noopener noreferrer">Pantry Tracker</a>
+              </h3>
+              <p class="item-description">Grocery checklist application to keep track of pantry items.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <h3 class="item-title">
+                <a href="https://anti-inflation-adhq.vercel.app/" target="_blank" rel="noopener noreferrer">YEC Hackathon: Anti-Inflation Web App</a>
+              </h3>
+              <p class="item-description">Built a webapp that analyses grocery prices and inflation trends.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <h3 class="item-title">
+                <a href="https://cozy-unicorn-223557.netlify.app/" target="_blank" rel="noopener noreferrer">UmmahHacks: Conversational Calendar</a>
+              </h3>
+              <p class="item-description">Built a conversational calendar application for Muslims to plan their daily schedules.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <p>Feel free to check out my <a href="assets/ilhaan_resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>, <a href="https://www.linkedin.com/in/ilhaanp/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, or <a href="https://github.com/ilhaanp" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Ilhaan Paurobally. All rights reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
