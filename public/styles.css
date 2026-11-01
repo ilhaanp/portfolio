@@ -398,6 +398,22 @@ button:focus-visible {
   animation-fill-mode: both;
 }
 
+body.initial-intro-active .hero-entrance-title,
+body.initial-intro-active .hero-entrance-description,
+body.initial-intro-active .hero-entrance-terminal,
+body.initial-intro-active .hero-right {
+  animation-play-state: paused;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar-command {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  min-width: 0;
+}
+
 .hero-label {
   animation: heroFadeUp 0.45s ease-out 0.05s both;
 }
@@ -480,6 +496,10 @@ button:focus-visible {
 
 .code-greeting .terminal-cursor {
   color: var(--accent-green);
+}
+
+.sidebar-command .terminal-command-text {
+  overflow: hidden;
 }
 
 .hero-title {

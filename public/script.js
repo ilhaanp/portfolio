@@ -8,6 +8,8 @@
   const terminalCommands = document.querySelectorAll('[data-terminal-text]');
   const wordHoverItems = document.querySelectorAll('[data-word-hover]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const heroGreeting = document.querySelector('.hero-entrance-greeting [data-terminal-text]');
+  document.body.classList.add('initial-intro-active');
   document.body.classList.add('typing-active');
 
   function prepareWordHover(element) {
@@ -109,7 +111,12 @@
 
   function startTerminalTyping() {
     terminalCommands.forEach(function (command, index) {
-      typeTerminalCommand(command, index * 120 + 120, function () {
+      const isHeroGreeting = command === heroGreeting;
+      typeTerminalCommand(command, isHeroGreeting ? 0 : index * 120 + 120, function () {
+        if (isHeroGreeting) {
+          document.body.classList.remove('initial-intro-active');
+        }
+
         if (prefersReducedMotion) {
           const commandContainer = command.closest('.terminal-command, .terminal-command-line');
           if (commandContainer) {
