@@ -214,7 +214,7 @@
   if ('IntersectionObserver' in window && revealItems.length > 0) {
     const revealObserver = new IntersectionObserver(function (entries, observer) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && document.body.classList.contains('intro-scroll-started')) {
           entry.target.classList.add('is-visible');
           observer.unobserve(entry.target);
         }

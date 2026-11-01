@@ -426,6 +426,16 @@ body.initial-intro-active:not(.intro-scroll-started) .custom-cursor {
   visibility: hidden;
 }
 
+body.initial-intro-active:not(.intro-scroll-started) .terminal-command:not(.hero-entrance-greeting),
+body.initial-intro-active:not(.intro-scroll-started) .terminal-command-line,
+body.initial-intro-active:not(.intro-scroll-started) .terminal-cursor {
+  visibility: hidden;
+}
+
+body.initial-intro-active:not(.intro-scroll-started) .hero-entrance-greeting .terminal-cursor {
+  visibility: visible;
+}
+
 body.intro-scroll-started .page-layout {
   visibility: visible;
   opacity: 1;
@@ -441,6 +451,10 @@ body.intro-scroll-started .hero-entrance-greeting {
 body.intro-finished .page-layout {
   opacity: 1;
   transform: none;
+}
+
+body.intro-finished .hero-entrance-greeting {
+  visibility: hidden;
 }
 
 body.intro-finished .hero-entrance-greeting {
