@@ -391,6 +391,7 @@ button:focus-visible {
 }
 
 .hero-label,
+.hero-entrance-greeting,
 .hero-entrance-title,
 .hero-entrance-description,
 .hero-entrance-terminal {
@@ -398,6 +399,10 @@ button:focus-visible {
 }
 
 .hero-label {
+  animation: heroFadeUp 0.45s ease-out 0.05s both;
+}
+
+.hero-entrance-greeting {
   animation: heroFadeUp 0.45s ease-out 0.05s both;
 }
 
@@ -465,23 +470,12 @@ button:focus-visible {
 
 .code-greeting {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-primary);
+  font-size: 1.05rem;
+  color: var(--accent-blue);
   display: flex;
   align-items: center;
-  gap: 2px;
-}
-
-.code-greeting .cursor {
-  display: inline-block;
-  color: var(--text-primary);
-  font-weight: 400;
-  animation: blinkCursor 1s step-end infinite;
-}
-
-@keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  gap: 0;
+  margin-bottom: var(--space-2);
 }
 
 .hero-title {
