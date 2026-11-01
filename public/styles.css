@@ -471,11 +471,15 @@ button:focus-visible {
 .code-greeting {
   font-family: var(--font-mono);
   font-size: 1.05rem;
-  color: var(--accent-blue);
+  color: var(--accent-green);
   display: flex;
   align-items: center;
   gap: 0;
   margin-bottom: var(--space-2);
+}
+
+.code-greeting .terminal-cursor {
+  color: var(--accent-green);
 }
 
 .hero-title {
