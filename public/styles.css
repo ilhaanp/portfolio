@@ -812,7 +812,6 @@ body.reveal-ready [data-reveal].is-visible {
   letter-spacing: -0.025em;
   color: var(--text-primary);
   margin-bottom: var(--space-6);
-  transition: color 0.225s ease;
 }
 
 /* ==========================================================================
@@ -848,11 +847,6 @@ body.reveal-ready [data-reveal].is-visible {
 .project-link-row:hover .project-title {
   color: var(--accent-blue);
   transform: translateX(3px);
-}
-
-.project-link-row:hover .project-description,
-.project-link-row:hover .project-tech {
-  color: var(--accent-blue);
 }
 
 .project-link-row:hover .project-arrow {
@@ -1063,7 +1057,6 @@ body.reveal-ready [data-reveal].is-visible {
   color: var(--text-muted);
   letter-spacing: 0.01em;
   white-space: nowrap;
-  transition: color 0.225s ease;
 }
 
 /* ==========================================================================
@@ -1124,11 +1117,14 @@ body.reveal-ready .about-photo-col.is-visible {
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.7;
-  transition: color 0.225s ease;
 }
 
 .about-text-col p + p {
   margin-top: var(--space-4);
+}
+
+.character {
+  white-space: pre-wrap;
 }
 
 /* Mobile: stack photo above text */
@@ -1157,15 +1153,46 @@ body.reveal-ready .about-photo-col.is-visible {
 }
 
 @media (hover: hover) {
-  .section-heading:hover,
-  .skill-label:hover,
-  .about-text-col p:hover {
-    color: var(--accent-blue);
+  [data-character-hover] .character {
+    display: inline-block;
+    transition: color 0.225s ease, transform 0.225s ease;
+    transform-origin: center bottom;
   }
 
-  .nav-item:hover,
-  .social-icon-link:hover {
+  [data-character-hover] .character:hover {
     color: var(--accent-blue);
+    transform: scale(1.12);
+  }
+}
+
+.custom-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none;
+  }
+
+  .custom-cursor {
+    display: block;
+    position: fixed;
+    top: -5px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--accent-blue);
+    border-radius: 50%;
+    background-color: rgba(64, 107, 191, 0.12);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1000;
+    transition: opacity 0.15s ease;
+  }
+
+  .custom-cursor.is-visible {
+    opacity: 1;
   }
 }
 

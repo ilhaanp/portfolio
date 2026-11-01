@@ -6,8 +6,72 @@
   const sections = document.querySelectorAll('section[id]');
   const revealItems = document.querySelectorAll('[data-reveal]');
   const terminalCommands = document.querySelectorAll('[data-terminal-text]');
+  const characterHoverItems = document.querySelectorAll('[data-character-hover]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.body.classList.add('typing-active');
+
+  function prepareCharacterHover(element) {
+    const originalText = element.textContent;
+    const textNodes = [];
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach(function (textNode) {
+      const fragment = document.createDocumentFragment();
+      const normalizedText = textNode.nodeValue.replace(/\s+/g, ' ').trim();
+
+      normalizedText.split('').forEach(function (character) {
+        const characterSpan = document.createElement('span');
+        characterSpan.className = 'character';
+        characterSpan.textContent = character;
+        characterSpan.setAttribute('aria-hidden', 'true');
+        fragment.appendChild(characterSpan);
+      });
+      textNode.parentNode.replaceChild(fragment, textNode);
+    });
+
+    element.setAttribute('aria-label', originalText.replace(/\s+/g, ' ').trim());
+  }
+
+  characterHoverItems.forEach(prepareCharacterHover);
+
+  function setupCustomCursor() {
+    const supportsCustomCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (prefersReducedMotion || !supportsCustomCursor) {
+      return;
+    }
+
+    const cursor = document.createElement('span');
+    cursor.className = 'custom-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursor);
+    document.body.classList.add('custom-cursor-active');
+
+    let frameRequested = false;
+    let pointerX = 0;
+    let pointerY = 0;
+
+    function renderCursor() {
+      cursor.style.transform = 'translate3d(' + pointerX + 'px, ' + pointerY + 'px, 0)';
+      cursor.classList.add('is-visible');
+      frameRequested = false;
+    }
+
+    document.addEventListener('pointermove', function (event) {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (!frameRequested) {
+        window.requestAnimationFrame(renderCursor);
+        frameRequested = true;
+      }
+    });
+  }
+
+  setupCustomCursor();
 
   function showTerminalCommand(command) {
     command.textContent = command.getAttribute('data-terminal-text') || '';
