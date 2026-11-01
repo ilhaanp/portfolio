@@ -722,13 +722,13 @@ button:focus-visible {
 body.typing-active .terminal-command .terminal-cursor,
 body.typing-active .terminal-command-line .terminal-cursor {
   opacity: 0;
-  animation-play-state: paused;
+  visibility: hidden;
 }
 
 body.typing-active .terminal-command.terminal-command-complete .terminal-cursor,
 body.typing-active .terminal-command-line.terminal-command-complete .terminal-cursor {
   opacity: 1;
-  animation-play-state: running;
+  visibility: visible;
 }
 
 .hero-status-cursor {
@@ -812,6 +812,7 @@ body.reveal-ready [data-reveal].is-visible {
   letter-spacing: -0.025em;
   color: var(--text-primary);
   margin-bottom: var(--space-6);
+  transition: color 0.225s ease;
 }
 
 /* ==========================================================================
@@ -847,6 +848,11 @@ body.reveal-ready [data-reveal].is-visible {
 .project-link-row:hover .project-title {
   color: var(--accent-blue);
   transform: translateX(3px);
+}
+
+.project-link-row:hover .project-description,
+.project-link-row:hover .project-tech {
+  color: var(--accent-blue);
 }
 
 .project-link-row:hover .project-arrow {
@@ -1057,6 +1063,7 @@ body.reveal-ready [data-reveal].is-visible {
   color: var(--text-muted);
   letter-spacing: 0.01em;
   white-space: nowrap;
+  transition: color 0.225s ease;
 }
 
 /* ==========================================================================
@@ -1117,6 +1124,7 @@ body.reveal-ready .about-photo-col.is-visible {
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.7;
+  transition: color 0.225s ease;
 }
 
 .about-text-col p + p {
@@ -1145,6 +1153,19 @@ body.reveal-ready .about-photo-col.is-visible {
   body.reveal-ready .about-photo-col {
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (hover: hover) {
+  .section-heading:hover,
+  .skill-label:hover,
+  .about-text-col p:hover {
+    color: var(--accent-blue);
+  }
+
+  .nav-item:hover,
+  .social-icon-link:hover {
+    color: var(--accent-blue);
   }
 }
 
