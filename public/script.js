@@ -4,6 +4,7 @@
 
   const navItems = document.querySelectorAll('.nav-item');
   const sections = document.querySelectorAll('section[id]');
+  const revealItems = document.querySelectorAll('[data-reveal]');
 
   // Smooth scroll active state tracking via IntersectionObserver
   if ('IntersectionObserver' in window && sections.length > 0) {
@@ -30,6 +31,31 @@
 
     sections.forEach(function (sec) {
       sectionObserver.observe(sec);
+    });
+  }
+
+  // Reveal marked content once it first enters the viewport.
+  document.body.classList.add('reveal-ready');
+  if ('IntersectionObserver' in window && revealItems.length > 0) {
+    const revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.12
+    });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
+    });
+  } else {
+    revealItems.forEach(function (item) {
+      item.classList.add('is-visible');
     });
   }
 

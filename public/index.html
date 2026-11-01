@@ -77,14 +77,17 @@
         <div class="container hero-container">
           <!-- Left Column: Typography & Intro -->
           <div class="hero-left">
+            <div class="section-label-group hero-label">
+              <span class="section-name">$ whoami</span>
+            </div>
             <div class="code-greeting">
               <code>printf("Hello, World!");</code><span class="cursor" aria-hidden="true">|</span>
             </div>
-            <h1 class="hero-title">
+            <h1 class="hero-title hero-entrance-title">
               <span class="hero-title-dark">I’m</span><br>
               <span class="hero-title-blue">Ilhaan.</span>
             </h1>
-            <p class="hero-description">
+            <p class="hero-description hero-entrance-description">
               Computer Science student at York University.
               I enjoy building applications, solving problems,
               and exploring new technologies.
@@ -99,7 +102,7 @@
             <div class="terminal-star-accent" aria-hidden="true">&#10022;</div>
 
             <!-- Terminal Window Card -->
-            <div class="terminal-card">
+            <div class="terminal-card hero-entrance-terminal">
               <div class="terminal-header">
                 <div class="window-dots" aria-hidden="true">
                   <span class="dot dot-red"></span>
@@ -207,16 +210,14 @@
       <!-- Section 2: Projects -->
       <section id="projects" class="content-section">
         <div class="container">
-          <div class="section-label-group">
-            <span class="section-index">02</span>
-            <span class="section-divider-slash">/</span>
-            <span class="section-name">PROJECTS</span>
+          <div class="section-label-group" data-reveal>
+            <span class="section-name">$ ls ./projects</span>
           </div>
-          <h2 class="section-heading">Selected Projects.</h2>
+          <h2 class="section-heading" data-reveal>Selected Projects.</h2>
 
           <div class="project-list">
             <!-- AI Car Buying Assistant -->
-            <article class="project-item">
+            <article class="project-item" data-reveal>
               <a href="https://ai-car-buying-assistant.vercel.app/chat" target="_blank" rel="noopener noreferrer"
                 class="project-link-row">
                 <div class="project-thumbnail-wrapper">
@@ -238,7 +239,7 @@
             </article>
 
             <!-- Pantry Tracker -->
-            <article class="project-item">
+            <article class="project-item" data-reveal>
               <a href="https://pantry-tracker-green-seven.vercel.app/" target="_blank" rel="noopener noreferrer"
                 class="project-link-row">
                 <div class="project-thumbnail-wrapper">
@@ -264,16 +265,14 @@
       <!-- Section 3: Hackathons -->
       <section id="hackathons" class="content-section">
         <div class="container">
-          <div class="section-label-group">
-            <span class="section-index">03</span>
-            <span class="section-divider-slash">/</span>
-            <span class="section-name">HACKATHONS</span>
+          <div class="section-label-group" data-reveal>
+            <span class="section-name">$ ls ./hackathons</span>
           </div>
-          <h2 class="section-heading">Hackathons.</h2>
+          <h2 class="section-heading" data-reveal>Hackathons.</h2>
 
           <div class="project-list">
             <!-- Anti-Inflation Hackathon -->
-            <article class="project-item">
+            <article class="project-item" data-reveal>
               <a href="https://anti-inflation-adhq.vercel.app/" target="_blank" rel="noopener noreferrer"
                 class="project-link-row">
                 <div class="project-thumbnail-wrapper">
@@ -291,7 +290,7 @@
                   </div>
                 </div>
                 <div class="project-details">
-                  <h3 class="project-title">Anti-Inflation Hackathon</h3>
+                  <h3 class="project-title">YEC: Anti-Inflation</h3>
                   <p class="project-description">A team project focused on tackling rising costs through innovative
                     solutions.</p>
                   <p class="project-tech">React &middot; Firebase &middot; Team Project</p>
@@ -301,7 +300,7 @@
             </article>
 
             <!-- UmmahHacks: DeenCal -->
-            <article class="project-item">
+            <article class="project-item" data-reveal>
               <a href="https://cozy-unicorn-223557.netlify.app/" target="_blank" rel="noopener noreferrer"
                 class="project-link-row">
                 <div class="project-thumbnail-wrapper">
@@ -330,17 +329,15 @@
       <!-- Section 4: Skills -->
       <section id="skills" class="content-section">
         <div class="container">
-          <div class="section-label-group">
-            <span class="section-index">04</span>
-            <span class="section-divider-slash">/</span>
-            <span class="section-name">SKILLS</span>
+          <div class="section-label-group" data-reveal>
+            <span class="section-name">$ ls ./skills</span>
           </div>
-          <h2 class="section-heading">Tools I work with.</h2>
+          <h2 class="section-heading" data-reveal>Tools I work with.</h2>
 
           <div class="skills-strip-wrapper">
             <div class="skills-strip">
               <!-- JavaScript -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <rect width="32" height="32" rx="4" fill="#F7DF1E" />
@@ -353,7 +350,7 @@
               </div>
 
               <!-- TypeScript -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <rect width="32" height="32" rx="4" fill="#3178C6" />
@@ -366,7 +363,7 @@
               </div>
 
               <!-- Python -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <path
@@ -381,7 +378,7 @@
               </div>
 
               <!-- Java -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <path
@@ -393,7 +390,7 @@
               </div>
 
               <!-- React -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <ellipse cx="16" cy="16" rx="4" ry="11" transform="rotate(30 16 16)" stroke="#00D8FF"
@@ -409,7 +406,7 @@
               </div>
 
               <!-- Git -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <rect x="16" y="2.5" width="19" height="19" rx="3.5" transform="rotate(45 16 2.5)" fill="#F05032" />
@@ -424,7 +421,7 @@
               </div>
 
               <!-- Firebase -->
-              <div class="skill-item">
+              <div class="skill-item" data-reveal>
                 <div class="skill-icon-box">
                   <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <path d="M6.2 24.5L10.3 5.2C10.5 4.3 11.7 4.1 12.2 4.9L15.3 10.7L6.2 24.5Z" fill="#FFA000" />
@@ -445,21 +442,19 @@
         <div class="container">
           <div class="about-two-col">
             <!-- Left: Photo -->
-            <div class="about-photo-col">
+            <div class="about-photo-col" data-reveal>
               <img src="assets/soccer_pic.jpg" alt="Ilhaan walking onto the soccer pitch in a navy BramptonSC jersey"
                 class="about-photo">
             </div>
             <!-- Right: Text -->
             <div class="about-text-col">
-              <div class="section-label-group">
-                <span class="section-index">05</span>
-                <span class="section-divider-slash">/</span>
-                <span class="section-name">ABOUT</span>
+              <div class="section-label-group" data-reveal>
+                <span class="section-name">$ cat about.txt</span>
               </div>
-              <h2 class="about-heading">A little about me.</h2>
-              <p>When I'm not coding, you'll usually find me playing soccer, following the Champions League, or keeping
+              <h2 class="about-heading" data-reveal>A little about me.</h2>
+              <p data-reveal>When I'm not coding, you'll usually find me playing soccer, following the Champions League, or keeping
                 up with cars.</p>
-              <p>I'm always looking to learn, build, and be part of something meaningful.</p>
+              <p data-reveal>I'm always looking to learn, build, and be part of something meaningful.</p>
             </div>
           </div>
         </div>
