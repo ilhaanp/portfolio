@@ -16,7 +16,6 @@
 
   /* Accents */
   --accent-blue: #406BBF;
-  --accent-blue-hover: #33579E;
   --accent-green: #2E8540;
 
   /* Typography Families */
@@ -37,7 +36,6 @@
   --space-7: 2.5rem;
   --space-8: 3rem;
   --space-9: 4rem;
-  --space-10: 5rem;
 
   /* Radii */
   --radius-sm: 4px;
@@ -493,10 +491,6 @@ body.intro-finished .hero-right {
   opacity: 1;
   visibility: visible;
   transform: none;
-}
-
-body.intro-finished .hero-entrance-greeting {
-  visibility: hidden;
 }
 
 body.intro-finished .hero-entrance-greeting {
@@ -1007,15 +1001,6 @@ body.reveal-ready [data-reveal].is-visible {
   }
 }
 
-.project-thumbnail {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease;
-}
-
-.project-link-row:hover .project-thumbnail,
 .project-link-row:hover .thumbnail-placeholder-content {
   transform: scale(1.04);
 }

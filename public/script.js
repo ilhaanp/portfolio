@@ -15,7 +15,6 @@
   const startedTerminalCommands = new WeakSet();
   let heroTerminalStarted = false;
   document.body.classList.add('initial-intro-active');
-  document.body.classList.add('typing-active');
 
   function prepareWordHover(element) {
     const originalText = element.textContent;
@@ -89,8 +88,6 @@
       introProgress = Math.max(introProgress, progress);
     }
 
-    body.style.setProperty('--intro-progress', introProgress.toFixed(3));
-    body.style.setProperty('--intro-motion-progress', Math.min(introProgress / 0.55, 1).toFixed(3));
     const contentProgress = Math.max((introProgress - 0.55) / 0.45, 0);
     body.style.setProperty('--intro-content-progress', Math.min(contentProgress, 1).toFixed(3));
     body.style.setProperty('--intro-content-lift', ((1 - Math.min(contentProgress, 1)) * 10).toFixed(2) + 'px');
@@ -170,6 +167,10 @@
   }
 
   function startTerminalCommandsWithin(element) {
+    if (!element) {
+      return;
+    }
+
     if (element.matches('[data-terminal-text]')) {
       startTerminalCommand(element);
     }
@@ -178,7 +179,7 @@
   }
 
   function startTerminalTyping() {
-    terminalCommands.forEach(function (command, index) {
+    terminalCommands.forEach(function (command) {
       const isHeroGreeting = command === heroGreeting;
       const isSidebarCommand = command.closest('.sidebar-command');
       if (prefersReducedMotion) {
