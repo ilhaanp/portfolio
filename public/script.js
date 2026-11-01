@@ -5,6 +5,75 @@
   const navItems = document.querySelectorAll('.nav-item');
   const sections = document.querySelectorAll('section[id]');
   const revealItems = document.querySelectorAll('[data-reveal]');
+  const terminalCommands = document.querySelectorAll('[data-terminal-text]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('typing-active');
+
+  function showTerminalCommand(command) {
+    command.textContent = command.getAttribute('data-terminal-text') || '';
+    command.style.width = '';
+  }
+
+  function typeTerminalCommand(command, delay, onComplete) {
+    const fullText = command.getAttribute('data-terminal-text') || '';
+
+    if (prefersReducedMotion) {
+      showTerminalCommand(command);
+      if (onComplete) {
+        onComplete();
+      }
+      return;
+    }
+
+    command.style.width = fullText.length + 'ch';
+    command.textContent = '';
+
+    window.setTimeout(function () {
+      let characterIndex = 0;
+      const typingTimer = window.setInterval(function () {
+        command.textContent = fullText.slice(0, characterIndex + 1);
+        characterIndex += 1;
+
+        if (characterIndex === fullText.length) {
+          window.clearInterval(typingTimer);
+          const commandContainer = command.closest('.terminal-command, .terminal-command-line');
+          if (commandContainer) {
+            commandContainer.classList.add('terminal-command-complete');
+          }
+          if (onComplete) {
+            onComplete();
+          }
+        }
+      }, 42);
+    }, delay);
+  }
+
+  function startTerminalTyping() {
+    terminalCommands.forEach(function (command, index) {
+      typeTerminalCommand(command, index * 120 + 120, function () {
+        if (prefersReducedMotion) {
+          const commandContainer = command.closest('.terminal-command, .terminal-command-line');
+          if (commandContainer) {
+            commandContainer.classList.add('terminal-command-complete');
+          }
+        }
+      });
+    });
+
+    const heroStatusCursor = document.querySelector('.hero-status-cursor');
+    const heroCommand = document.querySelector('.terminal-command-line [data-terminal-text]');
+    if (heroStatusCursor && heroCommand) {
+      const heroTextLength = (heroCommand.getAttribute('data-terminal-text') || '').length;
+      const heroTypingDuration = prefersReducedMotion ? 0 : heroTextLength * 42 + 120;
+      const soccerSceneDuration = prefersReducedMotion ? 0 : 700;
+
+      window.setTimeout(function () {
+        heroStatusCursor.classList.add('is-ready');
+      }, heroTypingDuration + soccerSceneDuration);
+    }
+  }
+
+  startTerminalTyping();
 
   // Smooth scroll active state tracking via IntersectionObserver
   if ('IntersectionObserver' in window && sections.length > 0) {
@@ -60,7 +129,7 @@
   }
 
   // Respect prefers-reduced-motion for SVG animations
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (prefersReducedMotion) {
     const runningSvg = document.querySelector('.running-scene');
     if (runningSvg && typeof runningSvg.pauseAnimations === 'function') {
       runningSvg.pauseAnimations();
