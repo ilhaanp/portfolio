@@ -25,7 +25,7 @@
       return;
     }
 
-    command.style.width = fullText.length + 'ch';
+    command.style.width = '';
     command.textContent = '';
 
     window.setTimeout(function () {
