@@ -1123,10 +1123,6 @@ body.reveal-ready .about-photo-col.is-visible {
   margin-top: var(--space-4);
 }
 
-.character {
-  white-space: pre-wrap;
-}
-
 /* Mobile: stack photo above text */
 @media (max-width: 768px) {
   .about-two-col {
@@ -1153,15 +1149,22 @@ body.reveal-ready .about-photo-col.is-visible {
 }
 
 @media (hover: hover) {
-  [data-character-hover] .character {
+  [data-word-hover] .word {
     display: inline-block;
     transition: color 0.225s ease, transform 0.225s ease;
     transform-origin: center bottom;
+    white-space: nowrap;
   }
 
-  [data-character-hover] .character:hover {
+  [data-word-hover] .word:hover {
     color: var(--accent-blue);
-    transform: scale(1.12);
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-word-hover] .word:hover {
+    transform: none;
   }
 }
 
