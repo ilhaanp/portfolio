@@ -9,6 +9,8 @@
   const wordHoverItems = document.querySelectorAll('[data-word-hover]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const heroGreeting = document.querySelector('.hero-entrance-greeting [data-terminal-text]');
+  let introReady = prefersReducedMotion;
+  let introScrollFrameRequested = false;
   document.body.classList.add('initial-intro-active');
   document.body.classList.add('typing-active');
 
@@ -70,6 +72,35 @@
 
   setupCustomCursor();
 
+  function updateIntroReveal() {
+    if (!introReady || prefersReducedMotion) {
+      return;
+    }
+
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const progress = Math.min(window.scrollY / viewportHeight, 1);
+    const body = document.body;
+
+    body.style.setProperty('--intro-progress', progress.toFixed(3));
+    body.style.setProperty('--intro-lift', (progress * 24).toFixed(2) + 'px');
+    body.style.setProperty('--intro-page-shift', ((1 - progress) * 24).toFixed(2) + 'px');
+    body.classList.toggle('intro-scroll-ready', progress > 0);
+    body.classList.toggle('intro-finished', progress >= 1);
+  }
+
+  function requestIntroRevealUpdate() {
+    if (!introScrollFrameRequested) {
+      window.requestAnimationFrame(function () {
+        updateIntroReveal();
+        introScrollFrameRequested = false;
+      });
+      introScrollFrameRequested = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestIntroRevealUpdate, { passive: true });
+  window.addEventListener('resize', requestIntroRevealUpdate);
+
   function showTerminalCommand(command) {
     command.textContent = command.getAttribute('data-terminal-text') || '';
     command.style.width = '';
@@ -114,8 +145,12 @@
       const isHeroGreeting = command === heroGreeting;
       typeTerminalCommand(command, isHeroGreeting ? 0 : index * 120 + 120, function () {
         if (isHeroGreeting) {
-          document.body.classList.remove('initial-intro-active');
-          document.body.classList.add('intro-complete');
+          introReady = true;
+          if (prefersReducedMotion) {
+            document.body.classList.remove('initial-intro-active');
+          } else {
+            updateIntroReveal();
+          }
         }
 
         if (prefersReducedMotion) {

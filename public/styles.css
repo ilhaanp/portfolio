@@ -398,17 +398,19 @@ button:focus-visible {
   animation-fill-mode: both;
 }
 
-body.initial-intro-active .hero-entrance-title,
-body.initial-intro-active .hero-entrance-description,
-body.initial-intro-active .hero-entrance-terminal,
-body.initial-intro-active .hero-right {
+body.initial-intro-active:not(.intro-scroll-ready) .hero-entrance-title,
+body.initial-intro-active:not(.intro-scroll-ready) .hero-entrance-description,
+body.initial-intro-active:not(.intro-scroll-ready) .hero-entrance-terminal,
+body.initial-intro-active:not(.intro-scroll-ready) .hero-right {
   animation-play-state: paused;
   opacity: 0;
   visibility: hidden;
 }
 
-body.initial-intro-active .page-layout {
+body.initial-intro-active:not(.intro-scroll-ready) .page-layout {
   visibility: hidden;
+  opacity: 0;
+  transform: translateY(24px);
 }
 
 body.initial-intro-active .hero-entrance-greeting {
@@ -422,21 +424,33 @@ body.initial-intro-active .hero-entrance-greeting {
   animation: none;
 }
 
-body.initial-intro-active .custom-cursor {
+body.initial-intro-active:not(.intro-scroll-ready) .custom-cursor {
   visibility: hidden;
 }
 
-body.intro-complete .page-layout {
-  animation: pageReveal 0.55s ease-out both;
+body.intro-scroll-ready .page-layout {
+  visibility: visible;
+  opacity: var(--intro-progress);
+  transform: translateY(var(--intro-page-shift));
 }
 
-@keyframes pageReveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+body.intro-scroll-ready .hero-entrance-greeting {
+  opacity: calc(1 - var(--intro-progress));
+  transform: translate(-50%, calc(-50% - var(--intro-lift)));
+  pointer-events: none;
+}
+
+body.intro-finished .page-layout {
+  opacity: 1;
+  transform: none;
+}
+
+body.intro-finished .hero-entrance-greeting {
+  visibility: hidden;
+}
+
+body.intro-scroll-ready .custom-cursor {
+  visibility: visible;
 }
 
 .sidebar-command {
