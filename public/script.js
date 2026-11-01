@@ -11,6 +11,7 @@
   const heroGreeting = document.querySelector('.hero-entrance-greeting [data-terminal-text]');
   let introReady = prefersReducedMotion;
   let introScrollFrameRequested = false;
+  let introProgress = 0;
   document.body.classList.add('initial-intro-active');
   document.body.classList.add('typing-active');
 
@@ -81,11 +82,14 @@
     const progress = Math.min(window.scrollY / viewportHeight, 1);
     const body = document.body;
 
-    body.style.setProperty('--intro-progress', progress.toFixed(3));
-    body.style.setProperty('--intro-lift', (progress * 24).toFixed(2) + 'px');
-    body.style.setProperty('--intro-page-shift', ((1 - progress) * 24).toFixed(2) + 'px');
-    body.classList.toggle('intro-scroll-ready', progress > 0);
-    body.classList.toggle('intro-finished', progress >= 1);
+    if (progress > 0) {
+      body.classList.add('intro-scroll-started');
+      introProgress = Math.max(introProgress, progress);
+    }
+
+    body.style.setProperty('--intro-progress', introProgress.toFixed(3));
+    body.style.setProperty('--intro-lift', (introProgress * 24).toFixed(2) + 'px');
+    body.classList.toggle('intro-finished', introProgress >= 1);
   }
 
   function requestIntroRevealUpdate() {
