@@ -115,6 +115,7 @@
       typeTerminalCommand(command, isHeroGreeting ? 0 : index * 120 + 120, function () {
         if (isHeroGreeting) {
           document.body.classList.remove('initial-intro-active');
+          document.body.classList.add('intro-complete');
         }
 
         if (prefersReducedMotion) {
