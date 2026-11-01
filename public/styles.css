@@ -390,6 +390,30 @@ button:focus-visible {
   overflow: hidden;
 }
 
+.intro-stage {
+  min-height: 0;
+}
+
+body.initial-intro-active:not(.intro-finished) .intro-stage,
+body.intro-scroll-started:not(.intro-finished) .intro-stage {
+  min-height: 100vh;
+}
+
+body.initial-intro-active:not(.intro-finished) .hero-section,
+body.intro-scroll-started:not(.intro-finished) .hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+body.initial-intro-active:not(.intro-scroll-started) .intro-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  visibility: visible;
+  pointer-events: none;
+}
+
 .hero-label,
 .hero-entrance-greeting,
 .hero-entrance-title,
@@ -407,7 +431,7 @@ body.initial-intro-active:not(.intro-scroll-started) .hero-right {
   visibility: hidden;
 }
 
-body.initial-intro-active:not(.intro-scroll-started) .page-layout {
+body.initial-intro-active:not(.intro-scroll-started) .main-content > section {
   visibility: hidden;
 }
 
@@ -422,18 +446,17 @@ body.initial-intro-active .hero-entrance-greeting {
   animation: none;
 }
 
+body.initial-intro-active .sidebar {
+  animation: sidebarFadeIn 0.45s ease both;
+}
+
 body.initial-intro-active:not(.intro-scroll-started) .custom-cursor {
   visibility: hidden;
 }
 
-body.initial-intro-active:not(.intro-scroll-started) .terminal-command:not(.hero-entrance-greeting),
-body.initial-intro-active:not(.intro-scroll-started) .terminal-command-line,
-body.initial-intro-active:not(.intro-scroll-started) .terminal-cursor {
+body.initial-intro-active:not(.intro-scroll-started) .terminal-command:not(.hero-entrance-greeting):not(.sidebar-command),
+body.initial-intro-active:not(.intro-scroll-started) .terminal-command-line {
   visibility: hidden;
-}
-
-body.initial-intro-active:not(.intro-scroll-started) .hero-entrance-greeting .terminal-cursor {
-  visibility: visible;
 }
 
 body.intro-scroll-started .page-layout {
@@ -443,13 +466,32 @@ body.intro-scroll-started .page-layout {
 }
 
 body.intro-scroll-started .hero-entrance-greeting {
-  opacity: calc(1 - var(--intro-progress));
+  opacity: calc(1 - var(--intro-content-progress));
   transform: translate(-50%, calc(-50% - var(--intro-lift)));
   pointer-events: none;
 }
 
+body.intro-scroll-started .hero-entrance-title,
+body.intro-scroll-started .hero-entrance-description,
+body.intro-scroll-started .hero-entrance-terminal,
+body.intro-scroll-started .hero-right {
+  opacity: var(--intro-content-progress);
+  visibility: visible;
+  transform: translateY(var(--intro-content-lift));
+  animation: none;
+}
+
 body.intro-finished .page-layout {
   opacity: 1;
+  transform: none;
+}
+
+body.intro-finished .hero-entrance-title,
+body.intro-finished .hero-entrance-description,
+body.intro-finished .hero-entrance-terminal,
+body.intro-finished .hero-right {
+  opacity: 1;
+  visibility: visible;
   transform: none;
 }
 
@@ -792,28 +834,39 @@ body.intro-scroll-started .custom-cursor {
   margin-left: 0.15em;
   color: var(--accent-blue);
   font-weight: 500;
+  opacity: 0;
+  visibility: hidden;
   animation: terminalCursorBlink 1s ease-in-out infinite;
 }
 
-body.typing-active .terminal-command .terminal-cursor,
-body.typing-active .terminal-command-line .terminal-cursor {
-  opacity: 0;
-  visibility: hidden;
+.terminal-command-typing .terminal-cursor {
+  opacity: 1;
+  visibility: visible;
 }
 
-body.typing-active .terminal-command.terminal-command-complete .terminal-cursor,
-body.typing-active .terminal-command-line.terminal-command-complete .terminal-cursor {
+.terminal-command-complete .terminal-cursor {
   opacity: 1;
   visibility: visible;
 }
 
 .hero-status-cursor {
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.25s ease;
 }
 
 .hero-status-cursor.is-ready {
   opacity: 1;
+  visibility: visible;
+}
+
+@keyframes sidebarFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes terminalCursorBlink {
